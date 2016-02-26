@@ -9,9 +9,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="finalproject.tap.MainActivity">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="Play Game"
+        android:id="@+id/play_button"
+        android:layout_above="@+id/instruction_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instruction"
+        android:id="@+id/instruction_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Credit"
+        android:id="@+id/Credit"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/instruction_button"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
