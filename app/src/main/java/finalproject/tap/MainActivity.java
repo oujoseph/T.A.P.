@@ -26,8 +26,29 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton playGameButton = (ImageButton) findViewById(R.id.play_button);
         final ImageButton instructions = (ImageButton) findViewById(R.id.instruction_button);
         final ImageButton credits = (ImageButton) findViewById(R.id.Credit);
+        playGameButton.setOnClickListener(playGamePressed);
+        instructions.setOnClickListener(instructionPressed);
+        credits.setOnClickListener(creditPressed);
     }
 
+    private View.OnClickListener playGamePressed = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            playGame(v);
+        }
+    };
+    private View.OnClickListener instructionPressed = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            instructionActivity(v);
+        }
+    };
+    private View.OnClickListener creditPressed = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            creditActivity(v);
+        }
+    };
 
     //Goes to Play Activity when Play button is pressed
     public void playGame(View v){
