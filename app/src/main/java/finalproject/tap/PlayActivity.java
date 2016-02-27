@@ -1,8 +1,12 @@
 package finalproject.tap;
 
+import android.graphics.Color;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Display;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
@@ -31,6 +36,9 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_main);
 
+        ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+        ib.setBackgroundColor(Color.TRANSPARENT);
+        ib.setVisibility(View.INVISIBLE);
         //I got the countdown timer code from
         //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         //I just copied and paste it for now so I won't forget where I got it.
@@ -65,6 +73,15 @@ public class PlayActivity extends AppCompatActivity {
 
     public void gameCountDownTimer(){
 
+        ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+        Random randomizer = new Random();
+        int xaxis = randomizer.nextInt(450);
+        int yaxis = randomizer.nextInt(600);
+        ib.setX(xaxis);
+        ib.setY(yaxis);
+
+
+        ib.setVisibility(View.VISIBLE);
 
         //I got the countdown timer code from
         //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
@@ -90,5 +107,35 @@ public class PlayActivity extends AppCompatActivity {
             }
         }.start();
     }
+
+
+    //trying to implement this
+    //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
+    public void onRanBoxes(View v){
+        ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+        Random randomizer = new Random();
+
+
+        //how i got screen size
+        //http://stackoverflow.com/questions/19028990/android-imageview-in-random-position-with-onclicklistener
+        //come back to:
+        //http://stackoverflow.com/questions/2902640/android-get-the-screen-resolution-pixels-as-integer-values
+
+        Display ssize = getWindowManager().getDefaultDisplay();
+        Point screensize = new Point();
+        ssize.getSize(screensize);
+        int x = screensize.x;
+        int y = screensize.y;
+        int xaxis = randomizer.nextInt(x);
+        int yaxis = randomizer.nextInt(y);
+        ib.setX(xaxis);
+        ib.setY(yaxis);
+
+
+        ib.setVisibility(View.VISIBLE);
+
+
+    }
+
 
 }
