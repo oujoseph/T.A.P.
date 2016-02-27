@@ -7,24 +7,50 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView mainlistView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ImageButton playGameButton = (ImageButton) findViewById(R.id.play_button);
-        final ImageButton instructions = (ImageButton) findViewById(R.id.instruction_button);
-        final ImageButton credits = (ImageButton) findViewById(R.id.Credit);
-        playGameButton.setOnClickListener(playGamePressed);
-        instructions.setOnClickListener(instructionPressed);
-        credits.setOnClickListener(creditPressed);
+//        final ImageButton playGameButton = (ImageButton) findViewById(R.id.play_button);
+//        final ImageButton instructions = (ImageButton) findViewById(R.id.instruction_button);
+//        final ImageButton credits = (ImageButton) findViewById(R.id.Credit);
+
+
+        MAList list_data[] = new MAList[]
+                {
+                        new MAList(R.id.play_button),
+                        new MAList(R.id.instruction_button),
+                        new MAList(R.id.Credit)
+        };
+
+        MAListAdapter adapter = new MAListAdapter(this, R.layout.activity_main_list_layout, list_data);
+        mainlistView = (ListView)findViewById(R.id.mainListView);
+        mainlistView.setAdapter(adapter);
+
+        mainlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0)playGame(view);
+                if (position == 1)instructionActivity(view);
+                if (position == 2)creditActivity(view);
+                String item = (position + "");
+                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
 
