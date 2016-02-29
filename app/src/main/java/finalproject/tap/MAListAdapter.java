@@ -52,6 +52,7 @@ public class MAListAdapter extends ArrayAdapter<MAList>{
         if (position == 0) holder.imgIcon1.setImageResource(R.drawable.touchtoplayy);
         if (position == 1) holder.imgIcon1.setImageResource(R.drawable.instructionss);
         if (position == 2) holder.imgIcon1.setImageResource(R.drawable.creditss);
+        if (position == 3) holder.imgIcon1.setImageResource(R.drawable.settings);
 
         return row;
     }

@@ -7,6 +7,8 @@
     android:layout_height="fill_parent"
     android:descendantFocusability="blocksDescendants">
 
+    <!-- these imageviews don't actually have to be here.-->
+    <!-- They just have to be somewhere, and this is the place that makes most sense.-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +23,6 @@
         android:src="@drawable/instructionss"
         android:scaleType="fitXY"
         android:adjustViewBounds="true" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +30,13 @@
         android:src="@drawable/creditss"
         android:scaleType="fitXY"
         android:adjustViewBounds="true" />
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settings_button"
+        android:src="@drawable/settings"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true" />
 
 
 </LinearLayout>

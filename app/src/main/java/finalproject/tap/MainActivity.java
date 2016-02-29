@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                         new MAList(R.id.play_button),
                         new MAList(R.id.instruction_button),
-                        new MAList(R.id.Credit)
+                        new MAList(R.id.Credit),
+                        new MAList(R.id.settings_button)
         };
 
         MAListAdapter adapter = new MAListAdapter(this, R.layout.activity_main_list_layout, list_data);
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 if (position == 0)playGame(view);
                 if (position == 1)instructionActivity(view);
                 if (position == 2)creditActivity(view);
-                String item = (position + "");
+                if (position == 3)settingsActivity(view);
+                String item = ("starting activity " + position);
                 Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
             }
         });
@@ -91,4 +93,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Goes to Credit Activity when Credit button is pressed
+    public void settingsActivity(View v){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }
