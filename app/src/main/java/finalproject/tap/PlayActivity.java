@@ -126,8 +126,9 @@ public class PlayActivity extends AppCompatActivity {
         ssize.getSize(screensize);
         int x = screensize.x;
         int y = screensize.y;
-        int xaxis = randomizer.nextInt(x);
-        int yaxis = randomizer.nextInt(y);
+
+        int xaxis = randomizer.nextInt(1000 % x);
+        int yaxis = randomizer.nextInt(1800 % y);
         ib.setX(xaxis);
         ib.setY(yaxis);
 
