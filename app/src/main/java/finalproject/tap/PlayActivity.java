@@ -29,8 +29,9 @@ public class PlayActivity extends AppCompatActivity {
     TextView CountDownText;
     TextView GameOverTexts;
     TextView TimerCountDown;
+    ImageButton redbox_button;
     private static final String FORMAT = "%2d";
-    private static final String FORMAT2 = "%02d:%02d:%02d";
+    private static final String FORMAT2 = "%02d:%02d";
     int seconds , minutes;
     //checks to see if the game is over or not
     private int check = 0;
@@ -39,6 +40,9 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_main);
+
+        redbox_button = (ImageButton) findViewById(R.id.red_box);
+        redbox_button.setVisibility(View.INVISIBLE);
 
         Button rb = (Button) findViewById(R.id.restart_button);
         rb.setVisibility(View.INVISIBLE);
@@ -87,6 +91,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
         onRanBoxes(null);
+
         /*
         ImageButton ib = (ImageButton) findViewById(R.id.green_box);
         Random randomizer = new Random();
@@ -110,7 +115,6 @@ public class PlayActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
 
                 CountDownText.setText(""+String.format(FORMAT2,
-                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
                                 TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
@@ -122,6 +126,8 @@ public class PlayActivity extends AppCompatActivity {
                 check = 1; //Game is over.
                 ImageButton ib = (ImageButton) findViewById(R.id.green_box);
                 ib.setVisibility(View.INVISIBLE);
+                ImageButton redb = (ImageButton) findViewById(R.id.red_box);
+                redb.setVisibility(View.INVISIBLE);
                 CountDownText.setVisibility(View.INVISIBLE);
                 GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
                 game_score = game_score - 5;
@@ -164,13 +170,16 @@ public class PlayActivity extends AppCompatActivity {
             int yaxis = randomizer.nextInt(y - 50) + 5;
             ib.setX(xaxis);
             ib.setY(yaxis);
-
-
             ib.setVisibility(View.VISIBLE);
-            game_score = game_score + 5;
+            game_score = game_score + 10;
+
+            if(game_score >= 50){
+                redRandGen(null);
+            }
+
 
         }else {
-            
+
             //GameStartCountDownText = (TextView) findViewById(R.id.gamestartcountdown);
             //GameStartCountDownText.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
             //GameStartCountDownText.setVisibility(View.VISIBLE);
@@ -178,9 +187,39 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    public void redRandGen(View v){
+
+        if(check == 0){
+            TextView scores = (TextView) findViewById(R.id.score_view);
+            scores.setText("Score: " + game_score);
+            ImageButton redbut = (ImageButton) findViewById(R.id.red_box);
+            Random redrandomizer = new Random();
+            Display ssize2 = getWindowManager().getDefaultDisplay();
+            Point screensize2 = new Point();
+            ssize2.getSize(screensize2);
+            int redx = screensize2.x;
+            int redy = screensize2.y;
+            int redxaxis = redrandomizer.nextInt(redx - 100) + 50;
+            int redyaxis = redrandomizer.nextInt(redy - 50) + 5;
+            redbut.setX(redxaxis);
+            redbut.setY(redyaxis);
+            redbut.setVisibility(View.VISIBLE);
+            game_score = game_score - 5;
+
+        }else{
+
+        }
+    }
+
     public void backToMenu(View v){
         Intent intent = new Intent(PlayActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void restartGame(View v){
+        Intent intent = getIntent();
+        finish();
         startActivity(intent);
     }
 

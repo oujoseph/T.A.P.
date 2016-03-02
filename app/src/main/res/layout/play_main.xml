@@ -24,8 +24,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:id="@+id/green_box"
         android:src="@drawable/greenbox"
         android:layout_below="@+id/countdowntimer"
@@ -50,7 +50,8 @@
         android:text="Restart Game"
         android:id="@+id/restart_button"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="restartGame" />
 
     <Button
         android:layout_width="wrap_content"
@@ -70,5 +71,16 @@
         android:layout_marginBottom="20dp"
         android:layout_above="@+id/restart_button"
         android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/red_box"
+        android:src="@drawable/redbox"
+        android:clickable="false"
+        android:onClick="redRandGen"
+        android:layout_alignTop="@+id/green_box"
+        android:layout_toRightOf="@+id/timer_view"
+        android:layout_toEndOf="@+id/timer_view" />
 
 </RelativeLayout>
