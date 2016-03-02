@@ -27,8 +27,9 @@ public class PlayActivity extends AppCompatActivity {
 
 
     TextView CountDownText;
-    TextView GameStartCountDownText;
-    private static final String FORMAT = "%02d:%02d:%02d";
+    TextView GameOverTexts;
+    TextView TimerCountDown;
+    private static final String FORMAT = "%2d";
     private static final String FORMAT2 = "%02d:%02d:%02d";
     int seconds , minutes;
     //checks to see if the game is over or not
@@ -39,6 +40,13 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_main);
 
+        Button rb = (Button) findViewById(R.id.restart_button);
+        rb.setVisibility(View.INVISIBLE);
+        Button mu = (Button) findViewById(R.id.menu_button);
+        mu.setVisibility(View.INVISIBLE);
+
+        GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
+        GameOverTexts.setVisibility(View.INVISIBLE);
 
         TextView scores = (TextView) findViewById(R.id.score_view);
         scores.setText("Score: " + game_score);
@@ -50,22 +58,19 @@ public class PlayActivity extends AppCompatActivity {
         //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         //I just copied and paste it for now so I won't forget where I got it.
         //will change it a bit later.
-        GameStartCountDownText = (TextView) findViewById(R.id.gamestartcountdown);
-        new CountDownTimer(5000, 1000) { // adjust the milli seconds here
+        TimerCountDown = (TextView) findViewById(R.id.timer_view);
+        new CountDownTimer(6000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
 
-                GameStartCountDownText.setText(""+String.format(FORMAT,
-                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                TimerCountDown.setText(""+String.format(FORMAT,
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
             }
 
             public void onFinish() {
                 //GameStartCountDownText.setText("Start Game!");
-                GameStartCountDownText.setVisibility(View.INVISIBLE);
+                TimerCountDown.setVisibility(View.INVISIBLE);
                 gameCountDownTimer();
 
 
@@ -100,7 +105,7 @@ public class PlayActivity extends AppCompatActivity {
         CountDownText = (TextView) findViewById(R.id.countdowntimer);
         CountDownText.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(60000, 1000) { // adjust the milli seconds here
+        new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
 
@@ -114,8 +119,18 @@ public class PlayActivity extends AppCompatActivity {
 
             public void onFinish() {
                 //CountDownText.setText("Game Over!");
-                CountDownText.setVisibility(View.INVISIBLE);
                 check = 1; //Game is over.
+                ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+                ib.setVisibility(View.INVISIBLE);
+                CountDownText.setVisibility(View.INVISIBLE);
+                GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
+                game_score = game_score - 5;
+                GameOverTexts.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
+                GameOverTexts.setVisibility(View.VISIBLE);
+                Button rb = (Button) findViewById(R.id.restart_button);
+                rb.setVisibility(View.VISIBLE);
+                Button mu = (Button) findViewById(R.id.menu_button);
+                mu.setVisibility(View.VISIBLE);
             }
         }.start();
     }
@@ -152,15 +167,21 @@ public class PlayActivity extends AppCompatActivity {
 
 
             ib.setVisibility(View.VISIBLE);
-            game_score = game_score + 1;
+            game_score = game_score + 5;
 
         }else {
-            GameStartCountDownText = (TextView) findViewById(R.id.gamestartcountdown);
-            GameStartCountDownText.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
-            GameStartCountDownText.setVisibility(View.VISIBLE);
+            
+            //GameStartCountDownText = (TextView) findViewById(R.id.gamestartcountdown);
+            //GameStartCountDownText.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
+            //GameStartCountDownText.setVisibility(View.VISIBLE);
         }
 
     }
 
+    public void backToMenu(View v){
+        Intent intent = new Intent(PlayActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
 }

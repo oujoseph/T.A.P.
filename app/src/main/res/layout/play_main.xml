@@ -18,10 +18,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/gamestartcountdown"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/countdowntimer"
-        android:layout_alignStart="@+id/countdowntimer" />
+        android:id="@+id/gameover_textview"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/countdowntimer"
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="30dp"
@@ -43,5 +43,32 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart Game"
+        android:id="@+id/restart_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:id="@+id/menu_button"
+        android:onClick="backToMenu"
+        android:layout_below="@+id/restart_button"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Timer"
+        android:id="@+id/timer_view"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/restart_button"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
