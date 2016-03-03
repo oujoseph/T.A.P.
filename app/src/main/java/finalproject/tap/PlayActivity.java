@@ -36,6 +36,7 @@ public class PlayActivity extends AppCompatActivity {
     //checks to see if the game is over or not
     private int check = 0;
     public int game_score = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +59,10 @@ public class PlayActivity extends AppCompatActivity {
         ImageButton ib = (ImageButton) findViewById(R.id.green_box);
         ib.setBackgroundColor(Color.TRANSPARENT);
         ib.setVisibility(View.INVISIBLE);
+
+
+
+
         //I got the countdown timer code from
         //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         //I just copied and paste it for now so I won't forget where I got it.
@@ -75,9 +80,8 @@ public class PlayActivity extends AppCompatActivity {
             public void onFinish() {
                 //GameStartCountDownText.setText("Start Game!");
                 TimerCountDown.setVisibility(View.INVISIBLE);
+                onRanBoxes(null);
                 gameCountDownTimer();
-
-
 
             }
         }.start();
@@ -90,7 +94,10 @@ public class PlayActivity extends AppCompatActivity {
     public void gameCountDownTimer(){
 
 
-        onRanBoxes(null);
+
+        //onRanBoxes(null);
+
+
 
         /*
         ImageButton ib = (ImageButton) findViewById(R.id.green_box);
@@ -119,10 +126,15 @@ public class PlayActivity extends AppCompatActivity {
                                 TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+
             }
+
+
 
             public void onFinish() {
                 //CountDownText.setText("Game Over!");
+
                 check = 1; //Game is over.
                 ImageButton ib = (ImageButton) findViewById(R.id.green_box);
                 ib.setVisibility(View.INVISIBLE);
@@ -130,7 +142,7 @@ public class PlayActivity extends AppCompatActivity {
                 redb.setVisibility(View.INVISIBLE);
                 CountDownText.setVisibility(View.INVISIBLE);
                 GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
-                game_score = game_score - 5;
+                //game_score = game_score - 5;
                 GameOverTexts.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
                 GameOverTexts.setVisibility(View.VISIBLE);
                 Button rb = (Button) findViewById(R.id.restart_button);
@@ -138,14 +150,21 @@ public class PlayActivity extends AppCompatActivity {
                 Button mu = (Button) findViewById(R.id.menu_button);
                 mu.setVisibility(View.VISIBLE);
             }
+
+
+
         }.start();
+
+
     }
+
+
+
 
 
     //trying to implement this
     //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
     public void onRanBoxes(View v){
-
 
         if(check == 0) {
 
@@ -167,29 +186,30 @@ public class PlayActivity extends AppCompatActivity {
             int y = screensize.y;
 
             int xaxis = randomizer.nextInt(x - 100) + 50;
-            int yaxis = randomizer.nextInt(y - 50) + 5;
+            int yaxis = randomizer.nextInt(y - 50) + 30;
             ib.setX(xaxis);
             ib.setY(yaxis);
             ib.setVisibility(View.VISIBLE);
-            game_score = game_score + 10;
 
-            if(game_score >= 50){
-                redRandGen(null);
+            if (game_score >= 50) {
+                ImageButton red_box = (ImageButton) findViewById(R.id.green_box);
+                red_box.setImageResource(R.drawable.redbox);
+                game_score = game_score - 15;
+            } else if (game_score < 50) {
+                ImageButton green_box = (ImageButton) findViewById(R.id.green_box);
+                green_box.setImageResource(R.drawable.greenbox);
+                game_score = game_score + 10;
             }
-
-
-        }else {
-
-            //GameStartCountDownText = (TextView) findViewById(R.id.gamestartcountdown);
-            //GameStartCountDownText.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
-            //GameStartCountDownText.setVisibility(View.VISIBLE);
         }
 
     }
 
+
+
+/*
     public void redRandGen(View v){
 
-        if(check == 0){
+        if(check == 0 && game_score >= 50){
             TextView scores = (TextView) findViewById(R.id.score_view);
             scores.setText("Score: " + game_score);
             ImageButton redbut = (ImageButton) findViewById(R.id.red_box);
@@ -206,10 +226,12 @@ public class PlayActivity extends AppCompatActivity {
             redbut.setVisibility(View.VISIBLE);
             game_score = game_score - 5;
 
-        }else{
-
+        }else if(game_score < 50){
+            ImageButton redbut = (ImageButton) findViewById(R.id.red_box);
+            redbut.setVisibility(View.INVISIBLE);
         }
     }
+    */
 
     public void backToMenu(View v){
         Intent intent = new Intent(PlayActivity.this, MainActivity.class);
