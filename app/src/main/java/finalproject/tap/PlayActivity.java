@@ -2,6 +2,7 @@ package finalproject.tap;
 
 import android.graphics.Color;
 import android.graphics.Point;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -57,30 +58,91 @@ public class PlayActivity extends AppCompatActivity {
         scores.setText("Score: " + game_score);
 
         ImageButton ib = (ImageButton) findViewById(R.id.green_box);
-        ib.setBackgroundColor(Color.TRANSPARENT);
+        //ib.setBackgroundColor(Color.TRANSPARENT);
         ib.setVisibility(View.INVISIBLE);
+        //ib.setOnClickListener(new View.OnClickListener() {
 
 
+                /*
+                TextView scores = (TextView) findViewById(R.id.score_view);
+                scores.setText("Score: " + game_score);
+                ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+                Random randomizer = new Random();
+                Display ssize = getWindowManager().getDefaultDisplay();
+                Point screensize = new Point();
+                ssize.getSize(screensize);
+                int x = screensize.x;
+                int y = screensize.y;
 
+                ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
+                if (game_score >= 50) {
+                    ib2.setVisibility(View.VISIBLE);
+                }
 
-        //I got the countdown timer code from
-        //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        //I just copied and paste it for now so I won't forget where I got it.
-        //will change it a bit later.
-        TimerCountDown = (TextView) findViewById(R.id.timer_view);
-        new CountDownTimer(6000, 1000) { // adjust the milli seconds here
+                if (v.equals(ib)) {
+                    int xaxis = randomizer.nextInt(x - 100) + 10;
+                    int yaxis = randomizer.nextInt(y - 50) + 30;
+                    ib.setX(xaxis);
+                    ib.setY(yaxis);
 
-            public void onTick(long millisUntilFinished) {
-
-                TimerCountDown.setText(""+String.format(FORMAT,
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                    game_score = game_score + 10;
+                }
             }
+        });*/
+
+       /* ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
+        ib2.setBackgroundColor(Color.TRANSPARENT);
+        ib2.setVisibility(View.INVISIBLE);
+
+        ib2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                TextView scores = (TextView) findViewById(R.id.score_view);
+                scores.setText("Score: " + game_score);
+                ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
+                Random randomizer2 = new Random();
+                Display ssize2 = getWindowManager().getDefaultDisplay();
+                Point screensize = new Point();
+                ssize2.getSize(screensize);
+                int x = screensize.x;
+                int y = screensize.y;
+
+                if (v.equals(ib2)) {
+                   int xaxis2 = randomizer2.nextInt(x - 100) + 10;
+                   int yaxis2 = randomizer2.nextInt(y - 50) + 30;
+                   ib2.setX(xaxis2);
+                   ib2.setY(yaxis2);
+                   game_score = game_score - 5;
+                }
+            }
+        });*/
+
+
+            //I got the countdown timer code from
+            //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
+            //I just copied and paste it for now so I won't forget where I got it.
+            //will change it a bit later.
+            TimerCountDown=(TextView)
+
+            findViewById(R.id.timer_view);
+
+            new
+
+            CountDownTimer(6000,1000) { // adjust the milli seconds here
+
+                public void onTick ( long millisUntilFinished){
+
+                    TimerCountDown.setText("" + String.format(FORMAT,
+                            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                }
 
             public void onFinish() {
                 //GameStartCountDownText.setText("Start Game!");
                 TimerCountDown.setVisibility(View.INVISIBLE);
-                onRanBoxes(null);
+                //onRanBoxes(null);
+                ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+                ib.setVisibility(View.VISIBLE);
                 gameCountDownTimer();
 
             }
@@ -88,11 +150,58 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.green_box:
+
+                ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+                Random randomizer = new Random();
+                Display ssize = getWindowManager().getDefaultDisplay();
+                Point screensize = new Point();
+                ssize.getSize(screensize);
+                int x = screensize.x;
+                int y = screensize.y;
+
+                ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
+
+                int xaxis = randomizer.nextInt(x - 100) + 10;
+                int yaxis = randomizer.nextInt(y - 50) + 10;
+                ib.setX(xaxis);
+                ib.setY(yaxis);
+
+                game_score = game_score + 10;
+
+                if (game_score >= 50) {
+                    ib2.setVisibility(View.VISIBLE);
+                }
+                TextView scores = (TextView) findViewById(R.id.score_view);
+                scores.setText("Score: " + game_score);
+                break;
+
+            case R.id.red_box:
+                ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
+                Random randomizer2 = new Random();
+                Display ssize2 = getWindowManager().getDefaultDisplay();
+                Point screensize2 = new Point();
+                ssize2.getSize(screensize2);
+                int x2 = screensize2.x;
+                int y2 = screensize2.y;
 
 
+                int xaxis2 = randomizer2.nextInt(x2 - 100) + 10;
+                int yaxis2 = randomizer2.nextInt(y2 - 50) + 10;
+                ib3.setX(xaxis2);
+                ib3.setY(yaxis2);
+                game_score = game_score - 5;
 
-    public void gameCountDownTimer(){
+                TextView scores2 = (TextView) findViewById(R.id.score_view);
+                scores2.setText("Score: " + game_score);
+                break;
+        }
+    }
 
+
+    public void gameCountDownTimer() {
 
 
         //onRanBoxes(null);
@@ -121,7 +230,7 @@ public class PlayActivity extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished) {
 
-                CountDownText.setText(""+String.format(FORMAT2,
+                CountDownText.setText("" + String.format(FORMAT2,
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
                                 TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
@@ -129,7 +238,6 @@ public class PlayActivity extends AppCompatActivity {
 
 
             }
-
 
 
             public void onFinish() {
@@ -152,19 +260,15 @@ public class PlayActivity extends AppCompatActivity {
             }
 
 
-
         }.start();
 
 
     }
 
 
-
-
-
     //trying to implement this
     //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
-    public void onRanBoxes(View v){
+/*    public void onRanBoxes(View v){
 
         if(check == 0) {
 
@@ -202,7 +306,9 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
 
-    }
+    }*/
+
+
 
 
 
@@ -233,13 +339,13 @@ public class PlayActivity extends AppCompatActivity {
     }
     */
 
-    public void backToMenu(View v){
+    public void backToMenu(View v) {
         Intent intent = new Intent(PlayActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
-    public void restartGame(View v){
+    public void restartGame(View v) {
         Intent intent = getIntent();
         finish();
         startActivity(intent);

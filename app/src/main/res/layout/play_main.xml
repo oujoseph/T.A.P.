@@ -32,7 +32,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="92dp"
         android:clickable="false"
-        android:onClick="onRanBoxes" />
+        android:nestedScrollingEnabled="false"
+        android:onClick="onClick" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,9 +79,9 @@
         android:id="@+id/red_box"
         android:src="@drawable/redbox"
         android:clickable="false"
-        android:onClick="redRandGen"
         android:layout_alignTop="@+id/green_box"
         android:layout_toRightOf="@+id/timer_view"
-        android:layout_toEndOf="@+id/timer_view" />
+        android:layout_toEndOf="@+id/timer_view"
+        android:onClick="onClick" />
 
 </RelativeLayout>
