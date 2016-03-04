@@ -1,6 +1,7 @@
 package finalproject.tap;
 
 
+import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Intent;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView mainlistView;
 
+    private ImageView animatedimg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
 //        final ImageButton playGameButton = (ImageButton) findViewById(R.id.play_button);
 //        final ImageButton instructions = (ImageButton) findViewById(R.id.instruction_button);
 //        final ImageButton credits = (ImageButton) findViewById(R.id.Credit);
+        animatedimg = (ImageView) findViewById(R.id.animatedimg);
+        animatedimg.post(new Runnable() {
+            @Override
+            public void run() {
+                ((AnimationDrawable)animatedimg.getBackground()).start();
+
+            }
+        });
 
 
         MAList list_data[] = new MAList[]

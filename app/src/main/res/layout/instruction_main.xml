@@ -15,4 +15,14 @@
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:id="@+id/menu_button2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="77dp"
+        android:onClick="backTMenu" />
 </RelativeLayout>

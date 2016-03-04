@@ -19,4 +19,10 @@ public class CreditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credit_main);
     }
+
+    public void bacMenu(View v) {
+        Intent intent = new Intent(CreditActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
