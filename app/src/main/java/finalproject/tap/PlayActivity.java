@@ -21,7 +21,10 @@ import android.widget.TextView;
 import android.content.Intent;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+import android.os.Handler;
 
 
 public class PlayActivity extends AppCompatActivity {
@@ -37,6 +40,7 @@ public class PlayActivity extends AppCompatActivity {
     //checks to see if the game is over or not
     private int check = 0;
     public int game_score = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,9 +130,7 @@ public class PlayActivity extends AppCompatActivity {
 
             findViewById(R.id.timer_view);
 
-            new
-
-            CountDownTimer(6000,1000) { // adjust the milli seconds here
+            new CountDownTimer(6000,1000) { // adjust the milli seconds here
 
                 public void onTick ( long millisUntilFinished){
 
@@ -150,6 +152,10 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+
+
+
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.green_box:
@@ -164,8 +170,8 @@ public class PlayActivity extends AppCompatActivity {
 
                 ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
 
-                int xaxis = randomizer.nextInt(x - 100) + 10;
-                int yaxis = randomizer.nextInt(y - 50) + 10;
+                int xaxis = randomizer.nextInt(x - 150) + 10;
+                int yaxis = randomizer.nextInt(y - 350) + 10;
                 ib.setX(xaxis);
                 ib.setY(yaxis);
 
@@ -173,12 +179,15 @@ public class PlayActivity extends AppCompatActivity {
 
                 if (game_score >= 50) {
                     ib2.setVisibility(View.VISIBLE);
+
                 }
                 TextView scores = (TextView) findViewById(R.id.score_view);
                 scores.setText("Score: " + game_score);
                 break;
 
             case R.id.red_box:
+
+
                 ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
                 Random randomizer2 = new Random();
                 Display ssize2 = getWindowManager().getDefaultDisplay();
@@ -188,17 +197,54 @@ public class PlayActivity extends AppCompatActivity {
                 int y2 = screensize2.y;
 
 
-                int xaxis2 = randomizer2.nextInt(x2 - 100) + 10;
-                int yaxis2 = randomizer2.nextInt(y2 - 50) + 10;
+                int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
+                int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
                 ib3.setX(xaxis2);
                 ib3.setY(yaxis2);
                 game_score = game_score - 5;
 
                 TextView scores2 = (TextView) findViewById(R.id.score_view);
                 scores2.setText("Score: " + game_score);
+
+
                 break;
         }
-    }
+
+
+
+            //http://stackoverflow.com/questions/21511850/android-app-that-generates-random-words-every-second-and-displays-them-on-screen
+            if (game_score >= 50) {
+                new Thread(
+                        new Runnable() {
+                            public void run() {
+                                new Timer().scheduleAtFixedRate(new TimerTask() {
+                                    public void run() {
+
+                                        // This will update your box instance without the need of a Handler
+
+
+                                        ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
+                                        Random randomizer2 = new Random();
+                                        Display ssize2 = getWindowManager().getDefaultDisplay();
+                                        Point screensize2 = new Point();
+                                        ssize2.getSize(screensize2);
+                                        int x2 = screensize2.x;
+                                        int y2 = screensize2.y;
+
+
+                                        int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
+                                        int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
+                                        ib3.setX(xaxis2);
+                                        ib3.setY(yaxis2);
+
+
+                                    }
+                                }, 5000, 1000);
+                            }
+                        }).start();
+            }
+        }
+
 
 
     public void gameCountDownTimer() {
