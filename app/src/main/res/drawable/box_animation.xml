@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+
+
+    <item
+        android:background="#FFFFFF"
+        android:drawable="@drawable/aintrotext1"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext2"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext3"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext4"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext5"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext6"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext7"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext8"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext9"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext10"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext11"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext12"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext13"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext14"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext15"
+        android:duration="100"/>
+
+    <item
+        android:drawable="@drawable/aintrotext16"
+        android:duration="100"/>
+
+
+</animation-list>
