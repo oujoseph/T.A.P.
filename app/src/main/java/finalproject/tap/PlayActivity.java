@@ -40,7 +40,7 @@ public class PlayActivity extends AppCompatActivity {
     //checks to see if the game is over or not
     private int check = 0;
     public int game_score = 0;
-
+    private int bounce = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,16 @@ public class PlayActivity extends AppCompatActivity {
 
         redbox_button = (ImageButton) findViewById(R.id.red_box);
         redbox_button.setVisibility(View.INVISIBLE);
-
+        redbox_button = (ImageButton) findViewById(R.id.red_box2);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.yellow_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.orange_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.blue_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.purple_box);
+        redbox_button.setVisibility(View.INVISIBLE);
         Button rb = (Button) findViewById(R.id.restart_button);
         rb.setVisibility(View.INVISIBLE);
         Button mu = (Button) findViewById(R.id.menu_button);
@@ -168,7 +177,10 @@ public class PlayActivity extends AppCompatActivity {
                 int x = screensize.x;
                 int y = screensize.y;
 
-                ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
+                //ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
+                //ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
+
+
 
                 int xaxis = randomizer.nextInt(x - 150) + 10;
                 int yaxis = randomizer.nextInt(y - 350) + 10;
@@ -177,10 +189,7 @@ public class PlayActivity extends AppCompatActivity {
 
                 game_score = game_score + 10;
 
-                if (game_score >= 50) {
-                    ib2.setVisibility(View.VISIBLE);
 
-                }
                 TextView scores = (TextView) findViewById(R.id.score_view);
                 scores.setText("Score: " + game_score);
                 break;
@@ -188,7 +197,7 @@ public class PlayActivity extends AppCompatActivity {
             case R.id.red_box:
 
 
-                ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
+                ImageButton redbox = (ImageButton) findViewById(R.id.red_box);
                 Random randomizer2 = new Random();
                 Display ssize2 = getWindowManager().getDefaultDisplay();
                 Point screensize2 = new Point();
@@ -199,12 +208,143 @@ public class PlayActivity extends AppCompatActivity {
 
                 int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
                 int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
-                ib3.setX(xaxis2);
-                ib3.setY(yaxis2);
-                game_score = game_score - 5;
+                redbox.setX(xaxis2);
+                redbox.setY(yaxis2);
+
+
+                game_score = game_score - 20;
 
                 TextView scores2 = (TextView) findViewById(R.id.score_view);
                 scores2.setText("Score: " + game_score);
+
+
+                break;
+
+            case R.id.red_box2:
+
+
+            ImageButton redbox2 = (ImageButton) findViewById(R.id.red_box2);
+            Random randomizer3 = new Random();
+            Display ssize3 = getWindowManager().getDefaultDisplay();
+            Point screensize3 = new Point();
+            ssize3.getSize(screensize3);
+            int x3 = screensize3.x;
+            int y3 = screensize3.y;
+
+
+            int xaxis3 = randomizer3.nextInt(x3 - 150) + 10;
+            int yaxis3 = randomizer3.nextInt(y3 - 350) + 10;
+            redbox2.setX(xaxis3);
+            redbox2.setY(yaxis3);
+
+
+            game_score = game_score - 20;
+
+            TextView scores3 = (TextView) findViewById(R.id.score_view);
+            scores3.setText("Score: " + game_score);
+
+
+            break;
+
+            case R.id.yellow_box:
+
+
+                ImageButton redbox3 = (ImageButton) findViewById(R.id.yellow_box);
+                Random randomizer4 = new Random();
+                Display ssize4 = getWindowManager().getDefaultDisplay();
+                Point screensize4 = new Point();
+                ssize4.getSize(screensize4);
+                int x4 = screensize4.x;
+                int y4 = screensize4.y;
+
+
+                int xaxis4 = randomizer4.nextInt(x4 - 150) + 10;
+                int yaxis4 = randomizer4.nextInt(y4 - 350) + 10;
+                redbox3.setX(xaxis4);
+                redbox3.setY(yaxis4);
+
+
+                game_score = game_score - 50;
+
+                TextView scores4 = (TextView) findViewById(R.id.score_view);
+                scores4.setText("Score: " + game_score);
+
+
+                break;
+
+            case R.id.orange_box:
+
+
+                ImageButton redbox4 = (ImageButton) findViewById(R.id.yellow_box);
+                Random randomizer5 = new Random();
+                Display ssize5 = getWindowManager().getDefaultDisplay();
+                Point screensize5 = new Point();
+                ssize5.getSize(screensize5);
+                int x5 = screensize5.x;
+                int y5 = screensize5.y;
+
+
+                int xaxis5 = randomizer5.nextInt(x5 - 150) + 10;
+                int yaxis5 = randomizer5.nextInt(y5 - 350) + 10;
+                redbox4.setX(xaxis5);
+                redbox4.setY(yaxis5);
+
+
+                game_score = game_score - 75;
+
+                TextView scores5 = (TextView) findViewById(R.id.score_view);
+                scores5.setText("Score: " + game_score);
+
+
+                break;
+
+            case R.id.blue_box:
+
+
+                ImageButton redbox5 = (ImageButton) findViewById(R.id.yellow_box);
+                Random randomizer6 = new Random();
+                Display ssize6 = getWindowManager().getDefaultDisplay();
+                Point screensize6 = new Point();
+                ssize6.getSize(screensize6);
+                int x6 = screensize6.x;
+                int y6 = screensize6.y;
+
+
+                int xaxis6 = randomizer6.nextInt(x6 - 150) + 10;
+                int yaxis6 = randomizer6.nextInt(y6 - 350) + 10;
+                redbox5.setX(xaxis6);
+                redbox5.setY(yaxis6);
+
+
+                game_score = game_score - 100;
+
+                TextView scores6 = (TextView) findViewById(R.id.score_view);
+                scores6.setText("Score: " + game_score);
+
+
+                break;
+            case R.id.purple_box:
+
+
+                ImageButton redbox6 = (ImageButton) findViewById(R.id.purple_box);
+                Random randomizer7 = new Random();
+                Display ssize7 = getWindowManager().getDefaultDisplay();
+                Point screensize7 = new Point();
+                ssize7.getSize(screensize7);
+                int x7 = screensize7.x;
+                int y7 = screensize7.y;
+
+
+                int xaxis7 = randomizer7.nextInt(x7 - 150) + 10;
+                int yaxis7 = randomizer7.nextInt(y7 - 350) + 10;
+                redbox6.setX(xaxis7);
+                redbox6.setY(yaxis7);
+
+
+                game_score = game_score - 200;
+
+                TextView scores7 = (TextView) findViewById(R.id.score_view);
+                scores7.setText("Score: " + game_score);
 
 
                 break;
@@ -213,8 +353,8 @@ public class PlayActivity extends AppCompatActivity {
 
 
             //http://stackoverflow.com/questions/21511850/android-app-that-generates-random-words-every-second-and-displays-them-on-screen
-            if (game_score >= 50) {
-                new Thread(
+
+                /*new Thread(
                         new Runnable() {
                             public void run() {
                                 new Timer().scheduleAtFixedRate(new TimerTask() {
@@ -239,10 +379,11 @@ public class PlayActivity extends AppCompatActivity {
 
 
                                     }
-                                }, 5000, 1000);
+                                }, 5000, 5000);
                             }
-                        }).start();
-            }
+                        }).start();*/
+
+
         }
 
 
@@ -282,7 +423,99 @@ public class PlayActivity extends AppCompatActivity {
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
+                ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
+                ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
+                ImageButton ib5 = (ImageButton) findViewById(R.id.yellow_box);
+                ImageButton ib6 = (ImageButton) findViewById(R.id.orange_box);
+                ImageButton ib7 = (ImageButton) findViewById(R.id.blue_box);
+                ImageButton ib8 = (ImageButton) findViewById(R.id.purple_box);
+                if(game_score > 50){
 
+                   ib3.setVisibility(View.VISIBLE);
+
+                }else if(game_score < 50){
+                    ib3.setVisibility(View.INVISIBLE);
+                }
+
+                if(game_score > 100){
+                    ib4.setVisibility(View.VISIBLE);
+
+                }else if(game_score < 100){
+                    ib4.setVisibility(View.INVISIBLE);
+
+                }
+
+                if(game_score > 150){
+                    ib5.setVisibility(View.VISIBLE);
+                }else if(game_score < 150){
+                    ib5.setVisibility(View.INVISIBLE);
+                }
+
+                if(game_score > 200){
+                    ib6.setVisibility(View.VISIBLE);
+                }else if(game_score < 200){
+                    ib6.setVisibility(View.INVISIBLE);
+                }
+
+                if(game_score > 300){
+                    ib7.setVisibility(View.VISIBLE);
+                }else if(game_score < 300){
+                    ib7.setVisibility(View.INVISIBLE);
+                }
+
+                if(game_score > 400){
+                    ib8.setVisibility(View.VISIBLE);
+                }else if(game_score <400){
+                    ib8.setVisibility(View.INVISIBLE);
+                }
+
+                if (game_score > 50) {
+
+
+                    Random randomizer2 = new Random();
+                    Display ssize2 = getWindowManager().getDefaultDisplay();
+                    Point screensize2 = new Point();
+                    ssize2.getSize(screensize2);
+                    int x2 = screensize2.x;
+                    int y2 = screensize2.y;
+
+
+                    int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
+                    int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
+                    ib3.setX(xaxis2);
+                    ib3.setY(yaxis2);
+
+                    if(game_score > 100) {
+                        int xaxis3 = randomizer2.nextInt(x2 - 150) + 10;
+                        int yaxis3 = randomizer2.nextInt(y2 - 350) + 10;
+                        ib4.setX(xaxis3);
+                        ib4.setY(yaxis3);
+                    }
+                    if(game_score > 150) {
+                        int xaxis4 = randomizer2.nextInt(x2 - 150) + 10;
+                        int yaxis4 = randomizer2.nextInt(y2 - 350) + 10;
+                        ib5.setX(xaxis4);
+                        ib5.setY(yaxis4);
+                    }
+                    if(game_score > 200){
+                        int xaxis5 = randomizer2.nextInt(x2 - 150) + 10;
+                        int yaxis5 = randomizer2.nextInt(y2 - 350) + 10;
+                        ib6.setX(xaxis5);
+                        ib6.setY(yaxis5);
+                    }
+                    if(game_score > 300){
+                        int xaxis6 = randomizer2.nextInt(x2 - 150) + 10;
+                        int yaxis6 = randomizer2.nextInt(y2 - 350) + 10;
+                        ib7.setX(xaxis6);
+                        ib7.setY(yaxis6);
+                    }
+                    if(game_score > 400){
+                        int xaxis7 = randomizer2.nextInt(x2 - 150) + 10;
+                        int yaxis7 = randomizer2.nextInt(y2 - 350) + 10;
+                        ib8.setX(xaxis7);
+                        ib8.setY(yaxis7);
+                    }
+                }
             }
 
 
@@ -293,6 +526,16 @@ public class PlayActivity extends AppCompatActivity {
                 ImageButton ib = (ImageButton) findViewById(R.id.green_box);
                 ib.setVisibility(View.INVISIBLE);
                 ImageButton redb = (ImageButton) findViewById(R.id.red_box);
+                redb.setVisibility(View.INVISIBLE);
+                redb = (ImageButton) findViewById(R.id.red_box2);
+                redb.setVisibility(View.INVISIBLE);
+                redb = (ImageButton) findViewById(R.id.yellow_box);
+                redb.setVisibility(View.INVISIBLE);
+                redb = (ImageButton) findViewById(R.id.orange_box);
+                redb.setVisibility(View.INVISIBLE);
+                redb = (ImageButton) findViewById(R.id.blue_box);
+                redb.setVisibility(View.INVISIBLE);
+                redb = (ImageButton) findViewById(R.id.purple_box);
                 redb.setVisibility(View.INVISIBLE);
                 CountDownText.setVisibility(View.INVISIBLE);
                 GameOverTexts = (TextView) findViewById(R.id.gameover_textview);

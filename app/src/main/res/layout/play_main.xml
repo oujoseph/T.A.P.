@@ -84,4 +84,60 @@
         android:layout_toEndOf="@+id/timer_view"
         android:onClick="onClick" />
 
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/red_box2"
+        android:src="@drawable/redbox"
+        android:clickable="false"
+        android:onClick="onClick"
+        android:layout_above="@+id/timer_view"
+        android:layout_alignLeft="@+id/timer_view"
+        android:layout_alignStart="@+id/timer_view" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/yellow_box"
+        android:src="@drawable/yellowbox"
+        android:clickable="false"
+        android:onClick="onClick"
+        android:layout_above="@+id/timer_view"
+        android:layout_toRightOf="@+id/green_box"
+        android:layout_toEndOf="@+id/green_box" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/orange_box"
+        android:src="@drawable/orangebox"
+        android:clickable="false"
+        android:onClick="onClick"
+        android:layout_alignBottom="@+id/yellow_box"
+        android:layout_toRightOf="@+id/red_box"
+        android:layout_toEndOf="@+id/red_box" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/blue_box"
+        android:src="@drawable/bluebox"
+        android:clickable="false"
+        android:onClick="onClick"
+        android:layout_alignTop="@+id/red_box"
+        android:layout_toRightOf="@+id/orange_box"
+        android:layout_toEndOf="@+id/orange_box" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/purple_box"
+        android:src="@drawable/purplebox"
+        android:clickable="false"
+        android:nestedScrollingEnabled="false"
+        android:onClick="onClick"
+        android:layout_alignTop="@+id/green_box"
+        android:layout_toLeftOf="@+id/menu_button"
+        android:layout_toStartOf="@+id/menu_button" />
+
 </RelativeLayout>
