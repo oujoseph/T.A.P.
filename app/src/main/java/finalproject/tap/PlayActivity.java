@@ -41,11 +41,42 @@ public class PlayActivity extends AppCompatActivity {
     private int check = 0;
     public int game_score = 0;
     private int bounce = 0;
+    public static int pausestatus = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_main);
+
+        ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
+
+        pauseib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PlayActivity.this, Popupmenu.class));
+                pausestatus = 1;
+                //redbox_button = (ImageButton) findViewById(R.id.green_box);
+                //redbox_button.setVisibility(View.INVISIBLE);
+                redbox_button = (ImageButton) findViewById(R.id.red_box);
+                redbox_button.setVisibility(View.INVISIBLE);
+                redbox_button = (ImageButton) findViewById(R.id.red_box2);
+                redbox_button.setVisibility(View.INVISIBLE);
+                redbox_button = (ImageButton) findViewById(R.id.yellow_box);
+                redbox_button.setVisibility(View.INVISIBLE);
+                redbox_button = (ImageButton) findViewById(R.id.orange_box);
+                redbox_button.setVisibility(View.INVISIBLE);
+                redbox_button = (ImageButton) findViewById(R.id.blue_box);
+                redbox_button.setVisibility(View.INVISIBLE);
+                redbox_button = (ImageButton) findViewById(R.id.purple_box);
+                redbox_button.setVisibility(View.INVISIBLE);
+                Button rb = (Button) findViewById(R.id.restart_button);
+                rb.setVisibility(View.INVISIBLE);
+                Button mu = (Button) findViewById(R.id.menu_button);
+                mu.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
 
         redbox_button = (ImageButton) findViewById(R.id.red_box);
         redbox_button.setVisibility(View.INVISIBLE);
@@ -416,7 +447,7 @@ public class PlayActivity extends AppCompatActivity {
         new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
-
+                if(pausestatus != 1){
                 CountDownText.setText("" + String.format(FORMAT2,
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
                                 TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
@@ -485,36 +516,37 @@ public class PlayActivity extends AppCompatActivity {
                     ib3.setX(xaxis2);
                     ib3.setY(yaxis2);
 
-                    if(game_score > 100) {
+                    if (game_score > 100) {
                         int xaxis3 = randomizer2.nextInt(x2 - 150) + 10;
                         int yaxis3 = randomizer2.nextInt(y2 - 350) + 10;
                         ib4.setX(xaxis3);
                         ib4.setY(yaxis3);
                     }
-                    if(game_score > 150) {
+                    if (game_score > 150) {
                         int xaxis4 = randomizer2.nextInt(x2 - 150) + 10;
                         int yaxis4 = randomizer2.nextInt(y2 - 350) + 10;
                         ib5.setX(xaxis4);
                         ib5.setY(yaxis4);
                     }
-                    if(game_score > 200){
+                    if (game_score > 200) {
                         int xaxis5 = randomizer2.nextInt(x2 - 150) + 10;
                         int yaxis5 = randomizer2.nextInt(y2 - 350) + 10;
                         ib6.setX(xaxis5);
                         ib6.setY(yaxis5);
                     }
-                    if(game_score > 300){
+                    if (game_score > 300) {
                         int xaxis6 = randomizer2.nextInt(x2 - 150) + 10;
                         int yaxis6 = randomizer2.nextInt(y2 - 350) + 10;
                         ib7.setX(xaxis6);
                         ib7.setY(yaxis6);
                     }
-                    if(game_score > 400){
+                    if (game_score > 400) {
                         int xaxis7 = randomizer2.nextInt(x2 - 150) + 10;
                         int yaxis7 = randomizer2.nextInt(y2 - 350) + 10;
                         ib8.setX(xaxis7);
                         ib8.setY(yaxis7);
                     }
+                }
                 }
             }
 
@@ -631,6 +663,9 @@ public class PlayActivity extends AppCompatActivity {
     public void backToMenu(View v) {
         Intent intent = new Intent(PlayActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        finish();
         startActivity(intent);
     }
 
