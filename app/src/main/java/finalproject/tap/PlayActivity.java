@@ -47,7 +47,8 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_main);
-
+        pausestatus = 0;
+        /*
         ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
 
         pauseib.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +76,7 @@ public class PlayActivity extends AppCompatActivity {
                 mu.setVisibility(View.INVISIBLE);
 
             }
-        });
+        });*/
 
 
         redbox_button = (ImageButton) findViewById(R.id.red_box);
@@ -419,6 +420,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
 
+
     public void gameCountDownTimer() {
 
 
@@ -659,6 +661,38 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
     */
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+
+    public void pausestuff() {
+        pausestatus = 1;
+        //redbox_button = (ImageButton) findViewById(R.id.green_box);
+        //redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.red_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.red_box2);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.yellow_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.orange_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.blue_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        redbox_button = (ImageButton) findViewById(R.id.purple_box);
+        redbox_button.setVisibility(View.INVISIBLE);
+        //Button rb = (Button) findViewById(R.id.restart_button);
+        //rb.setVisibility(View.INVISIBLE);
+        //Button mu = (Button) findViewById(R.id.menu_button);
+        //mu.setVisibility(View.INVISIBLE);
+    }
+
 
     public void backToMenu(View v) {
         Intent intent = new Intent(PlayActivity.this, MainActivity.class);
@@ -674,5 +708,13 @@ public class PlayActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
+    public void pauseMenu(View v){
+        Intent intent = new Intent(PlayActivity.this, Popupmenu.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        pausestuff();
+        startActivity(intent);
+    }
+
 
 }

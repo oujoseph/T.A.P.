@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="00:00"
         android:id="@+id/countdowntimer"
         android:visibility="invisible"
         android:layout_alignParentTop="true"
@@ -141,14 +141,15 @@
         android:layout_toStartOf="@+id/menu_button" />
 
     <ImageButton
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/pause_button"
         android:src="@drawable/pausebutton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginEnd="20dp"
+        android:onClick="pauseMenu" />
 
 </RelativeLayout>

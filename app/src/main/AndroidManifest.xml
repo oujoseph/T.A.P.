@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:launchMode="singleInstance"
+            android:largeHeap="true"
             android:configChanges="keyboardHidden|orientation|screenSize"
+
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,7 @@
 
         <activity
             android:name=".PlayActivity"
-            android:launchMode="singleInstance"
+
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
 
@@ -32,7 +33,6 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
 
@@ -40,7 +40,6 @@
 
         <activity
             android:name=".InstructionActivity"
-            android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
 
@@ -48,7 +47,6 @@
 
         <activity
             android:name=".CreditActivity"
-            android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
 
@@ -56,7 +54,6 @@
 
         <activity
             android:name=".Popupmenu"
-            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.CustomTheme"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">

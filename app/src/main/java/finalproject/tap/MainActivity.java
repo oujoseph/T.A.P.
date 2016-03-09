@@ -67,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
 
     private View.OnClickListener playGamePressed = new View.OnClickListener() {
         @Override
@@ -94,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         PlayActivity.pausestatus = 0;
-        finish();
+        //finish();
         startActivity(intent);
     }
 

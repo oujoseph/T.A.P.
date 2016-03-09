@@ -12,9 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by JOO-DESKTOP on 2/27/2016.
- */
+
 public class MAListAdapter extends ArrayAdapter<MAList>{
     Context context;
     int layoutResourceId;
@@ -36,6 +34,7 @@ public class MAListAdapter extends ArrayAdapter<MAList>{
         if(row == null)
         {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+            //LayoutInflater inflater = LayoutInflater.from(context);
             row = inflater.inflate(layoutResourceId, parent, false);
 
             Log.d(TAG, "get string!!!!!!!!!!!!\\\\\\\\\\\\\\\\\\");
