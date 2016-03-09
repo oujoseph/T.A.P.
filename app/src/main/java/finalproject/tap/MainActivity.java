@@ -100,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
     public void playGame(View v){
         Intent intent = new Intent(this, PlayActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         PlayActivity.pausestatus = 0;
+        PlayActivity.timerPaused = false;
         //finish();
         startActivity(intent);
     }

@@ -39,6 +39,7 @@ public class PlayActivity extends AppCompatActivity {
     int seconds , minutes;
     //checks to see if the game is over or not
     private int check = 0;
+    public static boolean timerPaused = false;
     public int game_score = 0;
     private int bounce = 0;
     public static int pausestatus = 0;
@@ -186,6 +187,7 @@ public class PlayActivity extends AppCompatActivity {
                 //onRanBoxes(null);
                 ImageButton ib = (ImageButton) findViewById(R.id.green_box);
                 ib.setVisibility(View.VISIBLE);
+                timerPaused = false;
                 gameCountDownTimer();
 
             }
@@ -449,106 +451,110 @@ public class PlayActivity extends AppCompatActivity {
         new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
-                if(pausestatus != 1){
-                CountDownText.setText("" + String.format(FORMAT2,
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                if(timerPaused == true) {
+                    cancel();
+                }else{
+                    if (pausestatus != 1) {
+                        CountDownText.setText("" + String.format(FORMAT2,
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
-                ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
-                ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
-                ImageButton ib5 = (ImageButton) findViewById(R.id.yellow_box);
-                ImageButton ib6 = (ImageButton) findViewById(R.id.orange_box);
-                ImageButton ib7 = (ImageButton) findViewById(R.id.blue_box);
-                ImageButton ib8 = (ImageButton) findViewById(R.id.purple_box);
-                if(game_score > 50){
+                        ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
+                        ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
+                        ImageButton ib5 = (ImageButton) findViewById(R.id.yellow_box);
+                        ImageButton ib6 = (ImageButton) findViewById(R.id.orange_box);
+                        ImageButton ib7 = (ImageButton) findViewById(R.id.blue_box);
+                        ImageButton ib8 = (ImageButton) findViewById(R.id.purple_box);
+                        if (game_score > 50) {
 
-                   ib3.setVisibility(View.VISIBLE);
+                            ib3.setVisibility(View.VISIBLE);
 
-                }else if(game_score < 50){
-                    ib3.setVisibility(View.INVISIBLE);
-                }
+                        } else if (game_score < 50) {
+                            ib3.setVisibility(View.INVISIBLE);
+                        }
 
-                if(game_score > 100){
-                    ib4.setVisibility(View.VISIBLE);
+                        if (game_score > 100) {
+                            ib4.setVisibility(View.VISIBLE);
 
-                }else if(game_score < 100){
-                    ib4.setVisibility(View.INVISIBLE);
+                        } else if (game_score < 100) {
+                            ib4.setVisibility(View.INVISIBLE);
 
-                }
+                        }
 
-                if(game_score > 150){
-                    ib5.setVisibility(View.VISIBLE);
-                }else if(game_score < 150){
-                    ib5.setVisibility(View.INVISIBLE);
-                }
+                        if (game_score > 150) {
+                            ib5.setVisibility(View.VISIBLE);
+                        } else if (game_score < 150) {
+                            ib5.setVisibility(View.INVISIBLE);
+                        }
 
-                if(game_score > 200){
-                    ib6.setVisibility(View.VISIBLE);
-                }else if(game_score < 200){
-                    ib6.setVisibility(View.INVISIBLE);
-                }
+                        if (game_score > 200) {
+                            ib6.setVisibility(View.VISIBLE);
+                        } else if (game_score < 200) {
+                            ib6.setVisibility(View.INVISIBLE);
+                        }
 
-                if(game_score > 300){
-                    ib7.setVisibility(View.VISIBLE);
-                }else if(game_score < 300){
-                    ib7.setVisibility(View.INVISIBLE);
-                }
+                        if (game_score > 300) {
+                            ib7.setVisibility(View.VISIBLE);
+                        } else if (game_score < 300) {
+                            ib7.setVisibility(View.INVISIBLE);
+                        }
 
-                if(game_score > 400){
-                    ib8.setVisibility(View.VISIBLE);
-                }else if(game_score <400){
-                    ib8.setVisibility(View.INVISIBLE);
-                }
+                        if (game_score > 400) {
+                            ib8.setVisibility(View.VISIBLE);
+                        } else if (game_score < 400) {
+                            ib8.setVisibility(View.INVISIBLE);
+                        }
 
-                if (game_score > 50) {
-
-
-                    Random randomizer2 = new Random();
-                    Display ssize2 = getWindowManager().getDefaultDisplay();
-                    Point screensize2 = new Point();
-                    ssize2.getSize(screensize2);
-                    int x2 = screensize2.x;
-                    int y2 = screensize2.y;
+                        if (game_score > 50) {
 
 
-                    int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
-                    int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
-                    ib3.setX(xaxis2);
-                    ib3.setY(yaxis2);
+                            Random randomizer2 = new Random();
+                            Display ssize2 = getWindowManager().getDefaultDisplay();
+                            Point screensize2 = new Point();
+                            ssize2.getSize(screensize2);
+                            int x2 = screensize2.x;
+                            int y2 = screensize2.y;
 
-                    if (game_score > 100) {
-                        int xaxis3 = randomizer2.nextInt(x2 - 150) + 10;
-                        int yaxis3 = randomizer2.nextInt(y2 - 350) + 10;
-                        ib4.setX(xaxis3);
-                        ib4.setY(yaxis3);
+
+                            int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
+                            int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
+                            ib3.setX(xaxis2);
+                            ib3.setY(yaxis2);
+
+                            if (game_score > 100) {
+                                int xaxis3 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis3 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib4.setX(xaxis3);
+                                ib4.setY(yaxis3);
+                            }
+                            if (game_score > 150) {
+                                int xaxis4 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis4 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib5.setX(xaxis4);
+                                ib5.setY(yaxis4);
+                            }
+                            if (game_score > 200) {
+                                int xaxis5 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis5 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib6.setX(xaxis5);
+                                ib6.setY(yaxis5);
+                            }
+                            if (game_score > 300) {
+                                int xaxis6 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis6 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib7.setX(xaxis6);
+                                ib7.setY(yaxis6);
+                            }
+                            if (game_score > 400) {
+                                int xaxis7 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis7 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib8.setX(xaxis7);
+                                ib8.setY(yaxis7);
+                            }
+                        }
                     }
-                    if (game_score > 150) {
-                        int xaxis4 = randomizer2.nextInt(x2 - 150) + 10;
-                        int yaxis4 = randomizer2.nextInt(y2 - 350) + 10;
-                        ib5.setX(xaxis4);
-                        ib5.setY(yaxis4);
-                    }
-                    if (game_score > 200) {
-                        int xaxis5 = randomizer2.nextInt(x2 - 150) + 10;
-                        int yaxis5 = randomizer2.nextInt(y2 - 350) + 10;
-                        ib6.setX(xaxis5);
-                        ib6.setY(yaxis5);
-                    }
-                    if (game_score > 300) {
-                        int xaxis6 = randomizer2.nextInt(x2 - 150) + 10;
-                        int yaxis6 = randomizer2.nextInt(y2 - 350) + 10;
-                        ib7.setX(xaxis6);
-                        ib7.setY(yaxis6);
-                    }
-                    if (game_score > 400) {
-                        int xaxis7 = randomizer2.nextInt(x2 - 150) + 10;
-                        int yaxis7 = randomizer2.nextInt(y2 - 350) + 10;
-                        ib8.setX(xaxis7);
-                        ib8.setY(yaxis7);
-                    }
-                }
                 }
             }
 
@@ -673,6 +679,7 @@ public class PlayActivity extends AppCompatActivity {
 
     public void pausestuff() {
         pausestatus = 1;
+        timerPaused = true;
         //redbox_button = (ImageButton) findViewById(R.id.green_box);
         //redbox_button.setVisibility(View.INVISIBLE);
         redbox_button = (ImageButton) findViewById(R.id.red_box);
@@ -711,7 +718,7 @@ public class PlayActivity extends AppCompatActivity {
 
     public void pauseMenu(View v){
         Intent intent = new Intent(PlayActivity.this, Popupmenu.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         pausestuff();
         startActivity(intent);
     }
