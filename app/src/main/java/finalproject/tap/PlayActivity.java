@@ -43,12 +43,15 @@ public class PlayActivity extends AppCompatActivity {
     public int game_score = 0;
     private int bounce = 0;
     public static int pausestatus = 0;
+    public long Remainingtime = 0;
+    public static boolean timerResume = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_main);
         pausestatus = 0;
+        timerResume = false;
         /*
         ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
 
@@ -425,22 +428,6 @@ public class PlayActivity extends AppCompatActivity {
 
     public void gameCountDownTimer() {
 
-
-        //onRanBoxes(null);
-
-
-
-        /*
-        ImageButton ib = (ImageButton) findViewById(R.id.green_box);
-        Random randomizer = new Random();
-        int xaxis = randomizer.nextInt(450);
-        int yaxis = randomizer.nextInt(600);
-        ib.setX(xaxis);
-        ib.setY(yaxis);
-
-
-        ib.setVisibility(View.VISIBLE);
-        */
         //I got the countdown timer code from
         //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
         //I just copied and paste it for now so I won't forget where I got it.
@@ -451,15 +438,28 @@ public class PlayActivity extends AppCompatActivity {
         new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
-                if(timerPaused == true) {
+                if(timerPaused) {
                     cancel();
                 }else{
+
                     if (pausestatus != 1) {
                         CountDownText.setText("" + String.format(FORMAT2,
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
                                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                                 TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
                                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+
+                        Remainingtime = millisUntilFinished;
+                        resumeTimer();
+                        /*
+                        if(timerResume == true){
+                            long millisResumed= Remainingtime;
+                            new CountDownTimer(Remainingtime, 1000){
+                                public void onTick()
+                            }
+                        }*/
+
 
                         ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
                         ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
@@ -595,6 +595,149 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
+    public void resumeTimer() {
+        CountDownText = (TextView) findViewById(R.id.countdowntimer);
+        CountDownText.setVisibility(View.VISIBLE);
+        if(timerResume) {
+            long millisResumed = Remainingtime;
+            new CountDownTimer(millisResumed, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    if (pausestatus != 1) {
+                        CountDownText.setText("" + String.format(FORMAT2,
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                        ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
+                        ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
+                        ImageButton ib5 = (ImageButton) findViewById(R.id.yellow_box);
+                        ImageButton ib6 = (ImageButton) findViewById(R.id.orange_box);
+                        ImageButton ib7 = (ImageButton) findViewById(R.id.blue_box);
+                        ImageButton ib8 = (ImageButton) findViewById(R.id.purple_box);
+                        if (game_score > 50) {
+
+                            ib3.setVisibility(View.VISIBLE);
+
+                        } else if (game_score < 50) {
+                            ib3.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (game_score > 100) {
+                            ib4.setVisibility(View.VISIBLE);
+
+                        } else if (game_score < 100) {
+                            ib4.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        if (game_score > 150) {
+                            ib5.setVisibility(View.VISIBLE);
+                        } else if (game_score < 150) {
+                            ib5.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (game_score > 200) {
+                            ib6.setVisibility(View.VISIBLE);
+                        } else if (game_score < 200) {
+                            ib6.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (game_score > 300) {
+                            ib7.setVisibility(View.VISIBLE);
+                        } else if (game_score < 300) {
+                            ib7.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (game_score > 400) {
+                            ib8.setVisibility(View.VISIBLE);
+                        } else if (game_score < 400) {
+                            ib8.setVisibility(View.INVISIBLE);
+                        }
+
+                        if (game_score > 50) {
+
+
+                            Random randomizer2 = new Random();
+                            Display ssize2 = getWindowManager().getDefaultDisplay();
+                            Point screensize2 = new Point();
+                            ssize2.getSize(screensize2);
+                            int x2 = screensize2.x;
+                            int y2 = screensize2.y;
+
+
+                            int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
+                            int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
+                            ib3.setX(xaxis2);
+                            ib3.setY(yaxis2);
+
+                            if (game_score > 100) {
+                                int xaxis3 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis3 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib4.setX(xaxis3);
+                                ib4.setY(yaxis3);
+                            }
+                            if (game_score > 150) {
+                                int xaxis4 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis4 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib5.setX(xaxis4);
+                                ib5.setY(yaxis4);
+                            }
+                            if (game_score > 200) {
+                                int xaxis5 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis5 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib6.setX(xaxis5);
+                                ib6.setY(yaxis5);
+                            }
+                            if (game_score > 300) {
+                                int xaxis6 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis6 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib7.setX(xaxis6);
+                                ib7.setY(yaxis6);
+                            }
+                            if (game_score > 400) {
+                                int xaxis7 = randomizer2.nextInt(x2 - 150) + 10;
+                                int yaxis7 = randomizer2.nextInt(y2 - 350) + 10;
+                                ib8.setX(xaxis7);
+                                ib8.setY(yaxis7);
+                            }
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFinish() {
+                    check = 1; //Game is over.
+                    ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+                    ib.setVisibility(View.INVISIBLE);
+                    ImageButton redb = (ImageButton) findViewById(R.id.red_box);
+                    redb.setVisibility(View.INVISIBLE);
+                    redb = (ImageButton) findViewById(R.id.red_box2);
+                    redb.setVisibility(View.INVISIBLE);
+                    redb = (ImageButton) findViewById(R.id.yellow_box);
+                    redb.setVisibility(View.INVISIBLE);
+                    redb = (ImageButton) findViewById(R.id.orange_box);
+                    redb.setVisibility(View.INVISIBLE);
+                    redb = (ImageButton) findViewById(R.id.blue_box);
+                    redb.setVisibility(View.INVISIBLE);
+                    redb = (ImageButton) findViewById(R.id.purple_box);
+                    redb.setVisibility(View.INVISIBLE);
+                    CountDownText.setVisibility(View.INVISIBLE);
+                    GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
+                    //game_score = game_score - 5;
+                    GameOverTexts.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
+                    GameOverTexts.setVisibility(View.VISIBLE);
+                    Button rb = (Button) findViewById(R.id.restart_button);
+                    rb.setVisibility(View.VISIBLE);
+                    Button mu = (Button) findViewById(R.id.menu_button);
+                    mu.setVisibility(View.VISIBLE);
+                }
+            }.start();
+
+        }
+    }
+
     //trying to implement this
     //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
 /*    public void onRanBoxes(View v){
@@ -640,33 +783,6 @@ public class PlayActivity extends AppCompatActivity {
 
 
 
-
-/*
-    public void redRandGen(View v){
-
-        if(check == 0 && game_score >= 50){
-            TextView scores = (TextView) findViewById(R.id.score_view);
-            scores.setText("Score: " + game_score);
-            ImageButton redbut = (ImageButton) findViewById(R.id.red_box);
-            Random redrandomizer = new Random();
-            Display ssize2 = getWindowManager().getDefaultDisplay();
-            Point screensize2 = new Point();
-            ssize2.getSize(screensize2);
-            int redx = screensize2.x;
-            int redy = screensize2.y;
-            int redxaxis = redrandomizer.nextInt(redx - 100) + 50;
-            int redyaxis = redrandomizer.nextInt(redy - 50) + 5;
-            redbut.setX(redxaxis);
-            redbut.setY(redyaxis);
-            redbut.setVisibility(View.VISIBLE);
-            game_score = game_score - 5;
-
-        }else if(game_score < 50){
-            ImageButton redbut = (ImageButton) findViewById(R.id.red_box);
-            redbut.setVisibility(View.INVISIBLE);
-        }
-    }
-    */
     @Override
     public void onPause(){
         super.onPause();
@@ -680,6 +796,7 @@ public class PlayActivity extends AppCompatActivity {
     public void pausestuff() {
         pausestatus = 1;
         timerPaused = true;
+        timerResume = false;
         //redbox_button = (ImageButton) findViewById(R.id.green_box);
         //redbox_button.setVisibility(View.INVISIBLE);
         redbox_button = (ImageButton) findViewById(R.id.red_box);
@@ -706,11 +823,13 @@ public class PlayActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        timerResume = false;
         finish();
         startActivity(intent);
     }
 
     public void restartGame(View v) {
+        timerResume = false;
         Intent intent = getIntent();
         finish();
         startActivity(intent);
