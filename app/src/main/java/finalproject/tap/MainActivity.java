@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppEventsLogger.activateApp(this);
 //        final ImageButton playGameButton = (ImageButton) findViewById(R.id.play_button);
 //        final ImageButton instructions = (ImageButton) findViewById(R.id.instruction_button);
 //        final ImageButton credits = (ImageButton) findViewById(R.id.Credit);
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
     }
 
     @Override
