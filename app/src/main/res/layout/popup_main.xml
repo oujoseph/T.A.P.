@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resume"
+        android:id="@+id/resume_button"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="174dp"
+        android:onClick="resumeGame" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart"
+        android:id="@+id/restart_button"
+        android:layout_below="@+id/resume_button"
+        android:layout_alignRight="@+id/resume_button"
+        android:layout_alignEnd="@+id/resume_button"
+        android:onClick="restartGame" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:id="@+id/button3"
+        android:layout_below="@+id/restart_button"
+        android:layout_alignRight="@+id/restart_button"
+        android:layout_alignEnd="@+id/restart_button"
+        android:onClick="bMenu" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Game Paused"
+        android:id="@+id/textView11"
+        android:layout_marginBottom="70dp"
+        android:layout_above="@+id/settings_button"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
