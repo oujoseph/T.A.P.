@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         PlayActivity.pausestatus = 0;
         PlayActivity.timerPaused = false;
+        PlayActivity.hasitPaused = false;
         finish();
         startActivity(intent);
     }

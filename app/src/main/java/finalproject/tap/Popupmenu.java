@@ -54,6 +54,7 @@ public class Popupmenu extends Activity{
     public void bMenu(View v) {
         Intent intent = new Intent(Popupmenu.this, MainActivity.class);
         PlayActivity.game_score = 0;
+        PlayActivity.hasitPaused = false;
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -96,6 +97,7 @@ public class Popupmenu extends Activity{
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PlayActivity.timerResume = false;
         PlayActivity.game_score = 0;
+        PlayActivity.hasitPaused = false;
         finish();
         startActivity(intent);
     }

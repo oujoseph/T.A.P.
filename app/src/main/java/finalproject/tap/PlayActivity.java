@@ -44,8 +44,12 @@ public class PlayActivity extends AppCompatActivity {
     private int bounce = 0;
     public static int pausestatus = 0;
     public long Remainingtime = 0;
+    public long Remainingtime2 = 0;
     public static boolean timerResume = false;
     public static int timerstopped = 0;
+    public long millisResumed = 0;
+    public static boolean hasitPaused = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class PlayActivity extends AppCompatActivity {
         pausestatus = 0;
         timerResume = false;
         timerstopped = 0;
+        hasitPaused = false;
         /*
         ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
 
@@ -453,6 +458,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
                         Remainingtime = millisUntilFinished;
+                        Remainingtime2 = millisUntilFinished;
 
 
 
@@ -759,31 +765,37 @@ public class PlayActivity extends AppCompatActivity {
 
 
     @Override
-    public void onPause(){
-        super.onPause();
-    }
-
-    @Override
     public void onResume(){
         super.onResume();
+
 
         CountDownText = (TextView) findViewById(R.id.countdowntimer);
         CountDownText.setVisibility(View.VISIBLE);
         if(timerResume) {
-            long millisResumed = Remainingtime;
+            if(hasitPaused) {
+                millisResumed = Remainingtime2;
+            }else if(!hasitPaused) {
+                millisResumed = Remainingtime;
+            }
             new CountDownTimer(millisResumed, 1000) {
                 public void onTick(long millisUntilFinished) {
-                    if (timerstopped == 2) {
-                        CountDownText.setText("" + String.format(FORMAT2,
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-                        resumeGame();
+                    if (timerstopped == 1) {
+                        cancel();
+                    } else {
+                        if (timerstopped == 2) {
+                            CountDownText.setText("" + String.format(FORMAT2,
+                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                            TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                            TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                            Remainingtime2 = millisUntilFinished;
+
+                            resumeGame();
+                        }
+
                     }
-
                 }
-
                 @Override
                 public void onFinish() {
                     finishGame();
@@ -793,11 +805,20 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+        public void onPause(){
+        super.onPause();
+
+
+    }
+
     public void pausestuff() {
         pausestatus = 1;
         timerPaused = true;
         timerResume = false;
         timerstopped = 1;
+        hasitPaused = true;
 
         //redbox_button = (ImageButton) findViewById(R.id.green_box);
         //redbox_button.setVisibility(View.INVISIBLE);
@@ -836,6 +857,7 @@ public class PlayActivity extends AppCompatActivity {
         timerResume = false;
         timerstopped = 0;
         game_score = 0;
+        hasitPaused = false;
         Intent intent = getIntent();
         finish();
         startActivity(intent);
