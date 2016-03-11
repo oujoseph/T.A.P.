@@ -38,9 +38,9 @@ public class PlayActivity extends AppCompatActivity {
     private static final String FORMAT2 = "%02d:%02d";
     int seconds , minutes;
     //checks to see if the game is over or not
-    private int check = 0;
+    public int check = 0;
     public static boolean timerPaused = false;
-    public int game_score = 0;
+    public static int game_score = 0;
     private int bounce = 0;
     public static int pausestatus = 0;
     public long Remainingtime = 0;
@@ -441,7 +441,7 @@ public class PlayActivity extends AppCompatActivity {
                 if(timerPaused) {
                     cancel();
                 }else{
-
+                    //resumeTimer();
                     if (pausestatus != 1) {
                         CountDownText.setText("" + String.format(FORMAT2,
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
@@ -451,14 +451,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
                         Remainingtime = millisUntilFinished;
-                        resumeTimer();
-                        /*
-                        if(timerResume == true){
-                            long millisResumed= Remainingtime;
-                            new CountDownTimer(Remainingtime, 1000){
-                                public void onTick()
-                            }
-                        }*/
+                        //resumeTimer();
 
 
                         ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);

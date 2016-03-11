@@ -24,8 +24,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/green_box"
         android:src="@drawable/greenbox"
         android:layout_below="@+id/countdowntimer"
@@ -74,8 +74,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/red_box"
         android:src="@drawable/redbox"
         android:clickable="false"
@@ -85,8 +85,8 @@
         android:onClick="onClick" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/red_box2"
         android:src="@drawable/redbox"
         android:clickable="false"
@@ -96,8 +96,8 @@
         android:layout_alignStart="@+id/timer_view" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/yellow_box"
         android:src="@drawable/yellowbox"
         android:clickable="false"
@@ -107,8 +107,8 @@
         android:layout_toEndOf="@+id/green_box" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/orange_box"
         android:src="@drawable/orangebox"
         android:clickable="false"
@@ -118,8 +118,8 @@
         android:layout_toEndOf="@+id/red_box" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/blue_box"
         android:src="@drawable/bluebox"
         android:clickable="false"
@@ -129,8 +129,8 @@
         android:layout_toEndOf="@+id/orange_box" />
 
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/purple_box"
         android:src="@drawable/purplebox"
         android:clickable="false"

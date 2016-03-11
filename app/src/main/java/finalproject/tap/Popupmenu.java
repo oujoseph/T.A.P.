@@ -2,13 +2,25 @@ package finalproject.tap;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Html;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import finalproject.tap.PlayActivity;
 public class Popupmenu extends Activity{
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +33,7 @@ public class Popupmenu extends Activity{
         int width = disMet.widthPixels;
         int height = disMet.heightPixels;
 
-        getWindow().setLayout((int) (width * 1), (int) (height * 1));
+        getWindow().setLayout((int) (width), (int) (height));
 
 
 
@@ -62,22 +74,24 @@ public class Popupmenu extends Activity{
         //PlayActivity.resumeTimer();
         //finish();
         //Intent intent = new Intent(this, Popupmenu.class);
-        Intent intent = new Intent(Popupmenu.this, PlayActivity.class);
+        //Intent intent = new Intent(Popupmenu.this, PlayActivity.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         //intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //|  Intent.FLAG_ACTIVITY_SINGLE_TOP);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         //intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-        intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         //startActivity(intent);
+
         finish();
     }
 
     public void restartGame(View v) {
         Intent intent = new Intent(Popupmenu.this, PlayActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PlayActivity.timerResume = false;
+        PlayActivity.game_score = 0;
         finish();
         startActivity(intent);
     }
