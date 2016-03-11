@@ -432,19 +432,18 @@ public class PlayActivity extends AppCompatActivity {
 
         //I got the countdown timer code from
         //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-        //I just copied and paste it for now so I won't forget where I got it.
-        //will change it a bit later.
         CountDownText = (TextView) findViewById(R.id.countdowntimer);
         CountDownText.setVisibility(View.VISIBLE);
 
         new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
-                if(timerstopped == 1) {
-                    cancel();
-                }else if (timerstopped == 2) {
+                if(timerstopped == 2) {
+                    //resumeTimer();
 
-                    resumeTimer();
+                }else if (timerstopped == 1) {
+                    cancel();
+
                 }else if (timerstopped == 0 && pausestatus != 1){
                         CountDownText.setText("" + String.format(FORMAT2,
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
@@ -591,24 +590,8 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
-    public void resumeTimer() {
-        System.out.println("HELLO!!");
-        System.out.println("HELLO!!");
-        System.out.println("HELLO!!");
-        System.out.println("HELLO!!");
-        System.out.println("HELLO!!");
-        CountDownText = (TextView) findViewById(R.id.countdowntimer);
-        CountDownText.setVisibility(View.VISIBLE);
-        if(timerResume) {
-            long millisResumed = Remainingtime;
-            new CountDownTimer(millisResumed, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    if (timerstopped == 2) {
-                        CountDownText.setText("" + String.format(FORMAT2,
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+    public void resumeGame(){
 
                         ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
                         ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
@@ -703,42 +686,33 @@ public class PlayActivity extends AppCompatActivity {
                                 ib8.setY(yaxis7);
                             }
                         }
-                    }
-
-                }
-
-                @Override
-                public void onFinish() {
-                    check = 1; //Game is over.
-                    ImageButton ib = (ImageButton) findViewById(R.id.green_box);
-                    ib.setVisibility(View.INVISIBLE);
-                    ImageButton redb = (ImageButton) findViewById(R.id.red_box);
-                    redb.setVisibility(View.INVISIBLE);
-                    redb = (ImageButton) findViewById(R.id.red_box2);
-                    redb.setVisibility(View.INVISIBLE);
-                    redb = (ImageButton) findViewById(R.id.yellow_box);
-                    redb.setVisibility(View.INVISIBLE);
-                    redb = (ImageButton) findViewById(R.id.orange_box);
-                    redb.setVisibility(View.INVISIBLE);
-                    redb = (ImageButton) findViewById(R.id.blue_box);
-                    redb.setVisibility(View.INVISIBLE);
-                    redb = (ImageButton) findViewById(R.id.purple_box);
-                    redb.setVisibility(View.INVISIBLE);
-                    CountDownText.setVisibility(View.INVISIBLE);
-                    GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
-                    //game_score = game_score - 5;
-                    GameOverTexts.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
-                    GameOverTexts.setVisibility(View.VISIBLE);
-                    Button rb = (Button) findViewById(R.id.restart_button);
-                    rb.setVisibility(View.VISIBLE);
-                    Button mu = (Button) findViewById(R.id.menu_button);
-                    mu.setVisibility(View.VISIBLE);
-                }
-            }.start();
-
-        }
     }
-
+    public void finishGame(){
+        check = 1; //Game is over.
+        ImageButton ib = (ImageButton) findViewById(R.id.green_box);
+        ib.setVisibility(View.INVISIBLE);
+        ImageButton redb = (ImageButton) findViewById(R.id.red_box);
+        redb.setVisibility(View.INVISIBLE);
+        redb = (ImageButton) findViewById(R.id.red_box2);
+        redb.setVisibility(View.INVISIBLE);
+        redb = (ImageButton) findViewById(R.id.yellow_box);
+        redb.setVisibility(View.INVISIBLE);
+        redb = (ImageButton) findViewById(R.id.orange_box);
+        redb.setVisibility(View.INVISIBLE);
+        redb = (ImageButton) findViewById(R.id.blue_box);
+        redb.setVisibility(View.INVISIBLE);
+        redb = (ImageButton) findViewById(R.id.purple_box);
+        redb.setVisibility(View.INVISIBLE);
+        CountDownText.setVisibility(View.INVISIBLE);
+        GameOverTexts = (TextView) findViewById(R.id.gameover_textview);
+        //game_score = game_score - 5;
+        GameOverTexts.setText(Html.fromHtml("<p>Game Over!</p>" + "<p>Final Score: </p>" + game_score));
+        GameOverTexts.setVisibility(View.VISIBLE);
+        Button rb = (Button) findViewById(R.id.restart_button);
+        rb.setVisibility(View.VISIBLE);
+        Button mu = (Button) findViewById(R.id.menu_button);
+        mu.setVisibility(View.VISIBLE);
+    }
     //trying to implement this
     //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
 /*    public void onRanBoxes(View v){
@@ -792,6 +766,31 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+
+        CountDownText = (TextView) findViewById(R.id.countdowntimer);
+        CountDownText.setVisibility(View.VISIBLE);
+        if(timerResume) {
+            long millisResumed = Remainingtime;
+            new CountDownTimer(millisResumed, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    if (timerstopped == 2) {
+                        CountDownText.setText("" + String.format(FORMAT2,
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                                TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                        resumeGame();
+                    }
+
+                }
+
+                @Override
+                public void onFinish() {
+                    finishGame();
+                }
+            }.start();
+
+        }
     }
 
     public void pausestuff() {
@@ -828,6 +827,7 @@ public class PlayActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         timerResume = false;
         timerstopped = 0;
+        game_score = 0;
         finish();
         startActivity(intent);
     }

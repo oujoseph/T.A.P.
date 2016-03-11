@@ -73,6 +73,7 @@ public class Popupmenu extends Activity{
         PlayActivity.timerPaused = false;
         PlayActivity.timerResume = true;
         PlayActivity.timerstopped = 2;
+        //Activity PlayActivity.onResume();
 
         //PlayActivity.resumeTimer();
         //finish();
