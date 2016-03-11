@@ -71,6 +71,7 @@ public class Popupmenu extends Activity{
         PlayActivity.pausestatus = 0;
         PlayActivity.timerPaused = false;
         PlayActivity.timerResume = true;
+        PlayActivity.timerstopped = 2;
         //PlayActivity.resumeTimer();
         //finish();
         //Intent intent = new Intent(this, Popupmenu.class);

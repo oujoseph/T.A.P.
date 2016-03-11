@@ -45,6 +45,7 @@ public class PlayActivity extends AppCompatActivity {
     public static int pausestatus = 0;
     public long Remainingtime = 0;
     public static boolean timerResume = false;
+    public static int timerstopped = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.play_main);
         pausestatus = 0;
         timerResume = false;
+        timerstopped = 0;
         /*
         ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
 
@@ -438,11 +440,11 @@ public class PlayActivity extends AppCompatActivity {
         new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
-                if(timerPaused) {
+                if(timerstopped == 1) {
                     cancel();
-                }else{
-                    //resumeTimer();
-                    if (pausestatus != 1) {
+                }else if (timerstopped == 2) {
+                    resumeTimer();
+                }else if (timerstopped == 0 && pausestatus != 1){
                         CountDownText.setText("" + String.format(FORMAT2,
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
                                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
@@ -549,7 +551,7 @@ public class PlayActivity extends AppCompatActivity {
                         }
                     }
                 }
-            }
+
 
 
             public void onFinish() {
@@ -790,6 +792,7 @@ public class PlayActivity extends AppCompatActivity {
         pausestatus = 1;
         timerPaused = true;
         timerResume = false;
+
         //redbox_button = (ImageButton) findViewById(R.id.green_box);
         //redbox_button.setVisibility(View.INVISIBLE);
         redbox_button = (ImageButton) findViewById(R.id.red_box);
@@ -817,12 +820,15 @@ public class PlayActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         timerResume = false;
+        timerstopped = 0;
         finish();
         startActivity(intent);
     }
 
     public void restartGame(View v) {
         timerResume = false;
+        timerstopped = 0;
+        game_score = 0;
         Intent intent = getIntent();
         finish();
         startActivity(intent);
