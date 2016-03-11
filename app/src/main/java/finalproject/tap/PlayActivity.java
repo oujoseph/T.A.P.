@@ -443,6 +443,7 @@ public class PlayActivity extends AppCompatActivity {
                 if(timerstopped == 1) {
                     cancel();
                 }else if (timerstopped == 2) {
+
                     resumeTimer();
                 }else if (timerstopped == 0 && pausestatus != 1){
                         CountDownText.setText("" + String.format(FORMAT2,
@@ -453,7 +454,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
                         Remainingtime = millisUntilFinished;
-                        //resumeTimer();
+
 
 
                         ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
@@ -591,13 +592,18 @@ public class PlayActivity extends AppCompatActivity {
 
 
     public void resumeTimer() {
+        System.out.println("HELLO!!");
+        System.out.println("HELLO!!");
+        System.out.println("HELLO!!");
+        System.out.println("HELLO!!");
+        System.out.println("HELLO!!");
         CountDownText = (TextView) findViewById(R.id.countdowntimer);
         CountDownText.setVisibility(View.VISIBLE);
         if(timerResume) {
             long millisResumed = Remainingtime;
             new CountDownTimer(millisResumed, 1000) {
                 public void onTick(long millisUntilFinished) {
-                    if (pausestatus != 1) {
+                    if (timerstopped == 2) {
                         CountDownText.setText("" + String.format(FORMAT2,
                                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
                                         TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
@@ -792,6 +798,7 @@ public class PlayActivity extends AppCompatActivity {
         pausestatus = 1;
         timerPaused = true;
         timerResume = false;
+        timerstopped = 1;
 
         //redbox_button = (ImageButton) findViewById(R.id.green_box);
         //redbox_button.setVisibility(View.INVISIBLE);
@@ -837,6 +844,7 @@ public class PlayActivity extends AppCompatActivity {
     public void pauseMenu(View v){
         Intent intent = new Intent(PlayActivity.this, Popupmenu.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         pausestuff();
         startActivity(intent);
     }
