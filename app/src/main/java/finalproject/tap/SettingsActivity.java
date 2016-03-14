@@ -23,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    //HI KEVIN
     public void backMenu(View v) {
         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
