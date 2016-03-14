@@ -893,12 +893,12 @@ public class PlayActivity extends AppCompatActivity {
 
 
     public void fbPost(View v){
+        String string = "I got a score of " + game_score + " on this sweet new game made by Joseph Ou and Kevin Yen!";
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                    .setContentTitle("Hello Facebook")
-                    .setContentDescription(
-                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
-                    .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                    .setContentTitle("T.A.P.")
+                    .setContentDescription(string)
+                    .setContentUrl(Uri.parse("http://tapallthethings.com"))
                     .build();
             shareDialog.show(linkContent);
         }
