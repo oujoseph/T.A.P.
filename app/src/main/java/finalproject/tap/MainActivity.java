@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 if (position == 2)creditActivity(view);
                 if (position == 3)settingsActivity(view);
                 String item = ("starting activity " + position);
-                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
             }
         });
 

@@ -3,6 +3,7 @@ package finalproject.tap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -26,6 +27,10 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import android.os.Handler;
 
+import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
+
 
 public class PlayActivity extends AppCompatActivity {
 
@@ -34,6 +39,7 @@ public class PlayActivity extends AppCompatActivity {
     TextView GameOverTexts;
     TextView TimerCountDown;
     ImageButton redbox_button;
+    Button fbbutton;
     private static final String FORMAT = "%2d";
     private static final String FORMAT2 = "%02d:%02d";
     int seconds , minutes;
@@ -50,7 +56,8 @@ public class PlayActivity extends AppCompatActivity {
     public long millisResumed = 0;
     public static boolean hasitPaused = false;
 
-
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +66,16 @@ public class PlayActivity extends AppCompatActivity {
         timerResume = false;
         timerstopped = 0;
         hasitPaused = false;
+
+
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // this part is optional
+
+
+
+        Button fbbutton = (Button)findViewById(R.id.fb_button);
+        fbbutton.setVisibility(View.INVISIBLE);
         /*
         ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
 
@@ -564,6 +581,8 @@ public class PlayActivity extends AppCompatActivity {
                 //CountDownText.setText("Game Over!");
 
                 check = 1; //Game is over.
+                Button facebookPost = (Button) findViewById(R.id.fb_button);
+                facebookPost.setVisibility(View.VISIBLE);
                 ImageButton ib = (ImageButton) findViewById(R.id.green_box);
                 ib.setVisibility(View.INVISIBLE);
                 ImageButton redb = (ImageButton) findViewById(R.id.red_box);
@@ -594,6 +613,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
     }
+
 
 
 
@@ -872,4 +892,15 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
+    public void fbPost(View v){
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentTitle("Hello Facebook")
+                    .setContentDescription(
+                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
+                    .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                    .build();
+            shareDialog.show(linkContent);
+        }
+    }
 }
