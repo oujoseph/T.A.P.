@@ -7,13 +7,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="SOMETHING SOMETHING SETTINGS BLAH"
+        android:text="MOVE ALONG."
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp"
+        android:layout_marginTop="54dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -25,13 +24,14 @@
         android:layout_marginBottom="50dp"
         android:onClick="backMenu" />
 
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/menu_button3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp" />
+        android:text="NOTHING TO SEE HERE"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+
 </RelativeLayout>
