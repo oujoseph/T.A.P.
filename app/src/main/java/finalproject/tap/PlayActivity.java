@@ -72,39 +72,14 @@ public class PlayActivity extends AppCompatActivity {
         shareDialog = new ShareDialog(this);
         // this part is optional
 
+        ImageButton pauseButton = (ImageButton) findViewById(R.id.pause_button);
+        pauseButton.setEnabled(false);
+
 
 
         Button fbbutton = (Button)findViewById(R.id.fb_button);
         fbbutton.setVisibility(View.INVISIBLE);
-        /*
-        ImageButton pauseib = (ImageButton) findViewById(R.id.pause_button);
 
-        pauseib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PlayActivity.this, Popupmenu.class));
-                pausestatus = 1;
-                //redbox_button = (ImageButton) findViewById(R.id.green_box);
-                //redbox_button.setVisibility(View.INVISIBLE);
-                redbox_button = (ImageButton) findViewById(R.id.red_box);
-                redbox_button.setVisibility(View.INVISIBLE);
-                redbox_button = (ImageButton) findViewById(R.id.red_box2);
-                redbox_button.setVisibility(View.INVISIBLE);
-                redbox_button = (ImageButton) findViewById(R.id.yellow_box);
-                redbox_button.setVisibility(View.INVISIBLE);
-                redbox_button = (ImageButton) findViewById(R.id.orange_box);
-                redbox_button.setVisibility(View.INVISIBLE);
-                redbox_button = (ImageButton) findViewById(R.id.blue_box);
-                redbox_button.setVisibility(View.INVISIBLE);
-                redbox_button = (ImageButton) findViewById(R.id.purple_box);
-                redbox_button.setVisibility(View.INVISIBLE);
-                Button rb = (Button) findViewById(R.id.restart_button);
-                rb.setVisibility(View.INVISIBLE);
-                Button mu = (Button) findViewById(R.id.menu_button);
-                mu.setVisibility(View.INVISIBLE);
-
-            }
-        });*/
 
 
         redbox_button = (ImageButton) findViewById(R.id.red_box);
@@ -136,65 +111,11 @@ public class PlayActivity extends AppCompatActivity {
         //ib.setOnClickListener(new View.OnClickListener() {
 
 
-                /*
-                TextView scores = (TextView) findViewById(R.id.score_view);
-                scores.setText("Score: " + game_score);
-                ImageButton ib = (ImageButton) findViewById(R.id.green_box);
-                Random randomizer = new Random();
-                Display ssize = getWindowManager().getDefaultDisplay();
-                Point screensize = new Point();
-                ssize.getSize(screensize);
-                int x = screensize.x;
-                int y = screensize.y;
-
-                ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
-                if (game_score >= 50) {
-                    ib2.setVisibility(View.VISIBLE);
-                }
-
-                if (v.equals(ib)) {
-                    int xaxis = randomizer.nextInt(x - 100) + 10;
-                    int yaxis = randomizer.nextInt(y - 50) + 30;
-                    ib.setX(xaxis);
-                    ib.setY(yaxis);
-
-                    game_score = game_score + 10;
-                }
-            }
-        });*/
-
-       /* ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
-        ib2.setBackgroundColor(Color.TRANSPARENT);
-        ib2.setVisibility(View.INVISIBLE);
-
-        ib2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                TextView scores = (TextView) findViewById(R.id.score_view);
-                scores.setText("Score: " + game_score);
-                ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
-                Random randomizer2 = new Random();
-                Display ssize2 = getWindowManager().getDefaultDisplay();
-                Point screensize = new Point();
-                ssize2.getSize(screensize);
-                int x = screensize.x;
-                int y = screensize.y;
-
-                if (v.equals(ib2)) {
-                   int xaxis2 = randomizer2.nextInt(x - 100) + 10;
-                   int yaxis2 = randomizer2.nextInt(y - 50) + 30;
-                   ib2.setX(xaxis2);
-                   ib2.setY(yaxis2);
-                   game_score = game_score - 5;
-                }
-            }
-        });*/
 
 
             //I got the countdown timer code from
             //http://stackoverflow.com/questions/10032003/how-to-make-a-countdown-timer-in-android
-            //I just copied and paste it for now so I won't forget where I got it.
-            //will change it a bit later.
+
             TimerCountDown=(TextView)
 
             findViewById(R.id.timer_view);
@@ -216,6 +137,8 @@ public class PlayActivity extends AppCompatActivity {
                 ib.setVisibility(View.VISIBLE);
                 timerPaused = false;
                 gameCountDownTimer();
+                ImageButton pauseButton = (ImageButton) findViewById(R.id.pause_button);
+                pauseButton.setEnabled(true);
 
             }
         }.start();
@@ -224,7 +147,10 @@ public class PlayActivity extends AppCompatActivity {
 
 
 
-
+    //used this source to find the screensize
+    //http://stackoverflow.com/questions/21511850/android-app-that-generates-random-words-every-second-and-displays-them-on-screen
+    //and looked at this a little bit
+    //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
 
     public void onClick(View v) {
         switch (v.getId()) {
@@ -238,8 +164,6 @@ public class PlayActivity extends AppCompatActivity {
                 int x = screensize.x;
                 int y = screensize.y;
 
-                //ImageButton ib2 = (ImageButton) findViewById(R.id.red_box);
-                //ImageButton ib4 = (ImageButton) findViewById(R.id.red_box2);
 
 
 
@@ -411,41 +335,7 @@ public class PlayActivity extends AppCompatActivity {
                 break;
         }
 
-
-
-            //http://stackoverflow.com/questions/21511850/android-app-that-generates-random-words-every-second-and-displays-them-on-screen
-
-                /*new Thread(
-                        new Runnable() {
-                            public void run() {
-                                new Timer().scheduleAtFixedRate(new TimerTask() {
-                                    public void run() {
-
-                                        // This will update your box instance without the need of a Handler
-
-
-                                        ImageButton ib3 = (ImageButton) findViewById(R.id.red_box);
-                                        Random randomizer2 = new Random();
-                                        Display ssize2 = getWindowManager().getDefaultDisplay();
-                                        Point screensize2 = new Point();
-                                        ssize2.getSize(screensize2);
-                                        int x2 = screensize2.x;
-                                        int y2 = screensize2.y;
-
-
-                                        int xaxis2 = randomizer2.nextInt(x2 - 150) + 10;
-                                        int yaxis2 = randomizer2.nextInt(y2 - 350) + 10;
-                                        ib3.setX(xaxis2);
-                                        ib3.setY(yaxis2);
-
-
-                                    }
-                                }, 5000, 5000);
-                            }
-                        }).start();*/
-
-
-        }
+    }
 
 
 
@@ -460,10 +350,7 @@ public class PlayActivity extends AppCompatActivity {
         new CountDownTimer(61000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
-                if(timerstopped == 2) {
-                    //resumeTimer();
-
-                }else if (timerstopped == 1) {
+                if (timerstopped == 1) {
                     cancel();
 
                 }else if (timerstopped == 0 && pausestatus != 1){
@@ -715,6 +602,8 @@ public class PlayActivity extends AppCompatActivity {
     }
     public void finishGame(){
         check = 1; //Game is over.
+        Button facebookPost = (Button) findViewById(R.id.fb_button);
+        facebookPost.setVisibility(View.VISIBLE);
         ImageButton ib = (ImageButton) findViewById(R.id.green_box);
         ib.setVisibility(View.INVISIBLE);
         ImageButton redb = (ImageButton) findViewById(R.id.red_box);
@@ -739,48 +628,6 @@ public class PlayActivity extends AppCompatActivity {
         Button mu = (Button) findViewById(R.id.menu_button);
         mu.setVisibility(View.VISIBLE);
     }
-    //trying to implement this
-    //http://stackoverflow.com/questions/31716152/how-do-i-make-my-buttons-show-up-in-random-places-until-the-button-is-pressed
-/*    public void onRanBoxes(View v){
-
-        if(check == 0) {
-
-            TextView scores = (TextView) findViewById(R.id.score_view);
-            scores.setText("Score: " + game_score);
-            ImageButton ib = (ImageButton) findViewById(R.id.green_box);
-            Random randomizer = new Random();
-
-
-            //how i got screen size
-            //http://stackoverflow.com/questions/19028990/android-imageview-in-random-position-with-onclicklistener
-            //come back to:
-            //http://stackoverflow.com/questions/2902640/android-get-the-screen-resolution-pixels-as-integer-values
-
-            Display ssize = getWindowManager().getDefaultDisplay();
-            Point screensize = new Point();
-            ssize.getSize(screensize);
-            int x = screensize.x;
-            int y = screensize.y;
-
-            int xaxis = randomizer.nextInt(x - 100) + 50;
-            int yaxis = randomizer.nextInt(y - 50) + 30;
-            ib.setX(xaxis);
-            ib.setY(yaxis);
-            ib.setVisibility(View.VISIBLE);
-
-            if (game_score >= 50) {
-                ImageButton red_box = (ImageButton) findViewById(R.id.green_box);
-                red_box.setImageResource(R.drawable.redbox);
-                game_score = game_score - 15;
-            } else if (game_score < 50) {
-                ImageButton green_box = (ImageButton) findViewById(R.id.green_box);
-                green_box.setImageResource(R.drawable.greenbox);
-                game_score = game_score + 10;
-            }
-        }
-
-    }*/
-
 
 
 
